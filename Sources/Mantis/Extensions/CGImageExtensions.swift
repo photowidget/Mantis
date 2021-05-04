@@ -13,7 +13,7 @@ import UIKit
 
 extension CGImage {
     
-    func transformedImage(_ transform: CGAffineTransform, zoomScale: CGFloat, sourceSize: CGSize, cropSize: CGSize, imageViewSize: CGSize) -> CGImage? {
+    func transformedImage(_ transform: CGAffineTransform, zoomScale: CGFloat, sourceSize: CGSize, cropSize: CGSize, imageViewSize: CGSize, imageScale: CGFloat = 1.0) -> CGImage? {
         guard var colorSpaceRef = self.colorSpace else {
             return self
         }
@@ -24,7 +24,8 @@ extension CGImage {
         
         let expectedWidth = floor(sourceSize.width / imageViewSize.width * cropSize.width) / zoomScale
         let expectedHeight = floor(sourceSize.height / imageViewSize.height * cropSize.height) / zoomScale
-        let outputSize = CGSize(width: expectedWidth, height: expectedHeight)
+        //let outputSize = CGSize(width: expectedWidth, height: expectedHeight)
+        let outputSize = CGSize(width: expectedWidth * imageScale, height: expectedHeight * imageScale)
         let bitmapBytesPerRow = 0
         
         func getBitmapInfo() -> UInt32 {

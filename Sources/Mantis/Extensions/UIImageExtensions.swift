@@ -123,11 +123,13 @@ extension UIImage {
                                                          zoomScale: info.scale,
                                                          sourceSize: self.size,
                                                          cropSize: info.cropSize,
-                                                         imageViewSize: info.imageViewSize) else {
+                                                         imageViewSize: info.imageViewSize,
+                                                         imageScale: self.scale) else {
                                                             return nil
         }
         
-        return UIImage(cgImage: imageRef)
+        //return UIImage(cgImage: imageRef)
+        return UIImage(cgImage: imageRef, scale: self.scale, orientation: .up)
     }
     
 }
